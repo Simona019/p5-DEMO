@@ -5,6 +5,11 @@ function projectSelected() {
         setupScript = setupBouncables;
         drawScript = drawBouncables;
 
+    } else if (projectsSelect.value === 'flags') {
+        setupScript = function() {};
+        drawScript = drawFlags;
+
+
     }
 
     setupScript();
