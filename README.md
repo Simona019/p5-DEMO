@@ -1,3 +1,3 @@
-# p5-DEMO
+# p5-demo
 
-Testas
+testas
