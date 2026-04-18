@@ -1,5 +1,23 @@
 const cellSize = 25;
 
+const snakeHead = {
+    image: null,
+    positionX: 50,
+    positionY: 50,
+    sizeX: 50,
+    sizeY: 50,
+};
+
+function drawHead() {
+    image(
+        snakeHead.image,
+        snakeHead.positionX,
+        snakeHead.positionY,
+        snakeHead.sizeX,
+        snakeHead.sizeY,
+        
+    );
+ }
 function drawGrid() {
     for (var x = 0; x < canvasX; x = x + cellSize) {
         line(x, 0, x, canvasY);
@@ -14,11 +32,13 @@ function drawGrid() {
 
 
 function drawSnake() {
-    drawGrid()
+    drawGrid();
+
+    drawHead();
 }
 
 
 function setupSnake() {
-    
+    snakeHead.image = loadImage('assets/snakeHead.png');
 }
 
