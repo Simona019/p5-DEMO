@@ -4,8 +4,8 @@ const snakeHead = {
     image: null,
     positionX: 50,
     positionY: 50,
-    sizeX: 50,
-    sizeY: 50,
+    sizeX: 25,
+    sizeY: 25,
 };
 
 function drawHead() {
