@@ -1,5 +1,7 @@
 function projectSelected() {
     const projectsSelect = document.getElementById('projects')
+
+
     frameRate(60);
     keyPressedScript = function() {};
 
