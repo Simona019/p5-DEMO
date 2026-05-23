@@ -1,6 +1,9 @@
 const cellSize = 50;
 const directionInitial = 'r';
+
 const tail = [];
+
+
 const snakeHead = {
     cellX: null,
     cellY: null,
@@ -10,15 +13,15 @@ const snakeHead = {
     sizeY: cellSize
 };
 
-const food = {
-    cellX: null,
-    cellY: null,
+const snakeTailSegment = {
     image: null,
     sizeX: cellSize,
     sizeY: cellSize
 };
 
-const snakeTailSegment = {
+const food = {
+    cellX: null,
+    cellY: null,
     image: null,
     sizeX: cellSize,
     sizeY: cellSize
@@ -67,14 +70,6 @@ function drawGrid() {
 function drawSnake() {
     drawGrid();
 
-    image(
-        food.image,
-        cellSize * food.cellX,
-        cellSize * food.cellY,
-        food.sizeX,
-        food.sizeY
-    );
-
     drawTail();
 
     if (snakeHead.direction === 'r') {
@@ -87,16 +82,19 @@ function drawSnake() {
         snakeHead.cellY += 1;
     }
 
-    if (snakeHead.cellX === food.cellX && snakeHead.cellX === food.cellY) {
-        food.cellX = getRandomFoodCellPosition().x;
-        food.cellY = getRandomFoodCellPosition().y;
+    if (snakeHead.cellX === food.cellX && snakeHead.cellY === food.cellY) {
+        const newFoodPosition = getRandomFoodCellPosition();
+
+        food.cellX = newFoodPosition.x;
+        food.cellY = newFoodPosition.y;
 
         tail.unshift({
             cellX: tail[0].cellX,
-            cellY: tail[0].cellY,
+            cellY: tail[0].cellY
         });
     }
-        image(
+
+    image(
         food.image,
         cellSize * food.cellX,
         cellSize * food.cellY,
@@ -108,15 +106,17 @@ function drawSnake() {
 }
 
 function drawTail() {
-    let index = 0
+    let index = 0;
 
-    while (index <= tail.length - 2){
+    while (index <= tail.length - 2) {
         tail[index].cellX = tail[index + 1].cellX;
         tail[index].cellY = tail[index + 1].cellY;
-    }   
 
-    tail[tail.length - 1].cellX = snakeHead.cellX,
-    tail[tail.length - 1].cellY = snakeHead.cellY,
+        index++;
+    }
+
+    tail[tail.length - 1].cellX = snakeHead.cellX;
+    tail[tail.length - 1].cellY = snakeHead.cellY;
 
     tail.forEach((segment) => {
         image(
@@ -125,12 +125,9 @@ function drawTail() {
             segment.cellY * cellSize,
             snakeTailSegment.sizeX,
             snakeTailSegment.sizeY
-
         );
-    
     });
 }
-
 
 function keyPressedSnake() {
     if (key === 'a' && snakeHead.direction !== 'r') {
@@ -164,12 +161,12 @@ function setupSnake() {
     snakeHead.cellX = 2;
     snakeHead.cellY = 2;
 
-    snakeTailSegment.image = loadImage('assets/snake-segment.png')
+    snakeTailSegment.image = loadImage('assets/snake-segment.png');
 
-    tail.lenght = 0;
+    tail.length = 0;
+    
     tail.push({
         cellX: null,
         cellY: null
     });
-
 }

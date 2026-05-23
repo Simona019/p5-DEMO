@@ -20,13 +20,18 @@
     <script src="flags.js"></script>
     <script src="script.js"></script>
 
-
-    <label for="projects">Select a project:</label>
-    <select id="projects" onchange="projectSelected()">
+    <div id="p5-wrapper">
+       <label for="projects">Select a project:</label>
+        
+       <select id="projects" onchange="projectSelected()">
         <option disabled selected></option>
         <option value="bouncables">Bouncables</option>
         <option value="flags">Flags</option>
         <option value="snake">Snake</option>
-    </select>
+      </select>
+
+    <div id="p5-canvas"></div>
+    </div>
   </body>
-</html>
+
+  </html>
